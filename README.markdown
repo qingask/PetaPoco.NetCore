@@ -60,10 +60,14 @@ CREATE TABLE blogs (<br/>
                 result = db.Execute(sql1);<br/>
                 var sql2 = Sql.Builder.Append("update blogs set Url='test444' where BlogId=4");<br/>
                 result = db.Execute(sql2);<br/>
-
+                
+                //查询<br/>
                 var model2 = db.SingleOrDefault<Blog>(1);<br/>
+                  //列表<br/>
                 var list = db.Query<Blog>(Sql.Builder.Append("select * from blogs")).ToList();<br/>
+                  //分页<br/>
                 var list2 = db.Page<Blog>(1, 2, Sql.Builder.Append("select * from blogs"));<br/>
+                  //查询<br/>
                 var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");<br/>
                 var model1 = db.Query<Blog>(sql3).FirstOrDefault();<br/>
                 var model3 = db.FirstOrDefault<Blog>(sql3);<br/>
