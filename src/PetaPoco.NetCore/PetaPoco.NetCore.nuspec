@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PetaPoco.NetCore</id>
+    <version>1.0.0</version>
+    <authors>hoping</authors>
+    <owners>hoping</owners>
+    <licenseUrl>https://github.com/qingask/PetaPoco.NetCore/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/qingask/PetaPoco.NetCore</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/22149931?v=3&s=40</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,In. Netcore, support for mysql,sqlserver</description>
+    <releaseNotes>PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,In. Netcore, support for mysql,sqlserver.</releaseNotes>
+    <copyright>chinahuxp@126.com</copyright>
+    <tags>PetaPoco.NetCore,petapoco , netcore</tags>
+    <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>

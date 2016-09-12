@@ -1,0 +1,75 @@
+﻿{
+  "packOptions": {
+    "summary": "PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,In. Netcore, support for mysql,sqlserver",
+    "tags": [ "orm", "sql", "micro-orm" ],
+    "owners": [ "hoping" ],
+    "releaseNotes": "http://stackexchange.github.io/dapper-dot-net/",
+    "projectUrl": "https://github.com/StackExchange/dapper-dot-net",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/StackExchange/dapper-dot-net"
+    }
+  },
+  "version": "1.0.0-*",
+  "authors": [ "hoping" ],
+  "description": "A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc ",
+  "title": "PetaPoco NetCore or  dotnet",
+  "copyright": "2016 hoping, Inc.",
+  "buildOptions": {
+    "xmlDoc": true,
+    "warningsAsErrors": false
+  },
+  "frameworks": {
+    "net40": {
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0",
+        "System.Configuration": "4.0.0.0"
+      },
+      "dependencies": {
+        "MySql.Data": "6.9.8"
+      }
+    },
+    "net45": {
+      "buildOptions": {
+        "define": [ "ASYNC" ]
+      },
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0",
+        "System.Configuration": "4.0.0.0"
+      },
+      "dependencies": {
+        "MySql.Data": "6.9.8"
+      }
+    },
+    "netstandard1.5": {
+      "buildOptions": {
+        "define": [ "ASYNC", "COREFX" ]
+      },
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ],
+      "frameworkAssemblies": {
+      },
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-rc2-3002702",
+          "type": "platform"
+        },
+        "System.Data.SqlClient": "4.1.0",
+        "System.Reflection.Emit.Lightweight": "4.0.1",
+        "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+        "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
+
+        "Pomelo.Data.MySql": "1.0.0"
+      }
+    }
+  }
+}
