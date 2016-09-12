@@ -1,78 +1,85 @@
 # PetaPoco.NetCore
-PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,In. Netcore, support for mysql,sqlserver
-petapoco:https://github.com/CollaboratingPlatypus/PetaPoco
 
-Super easy use and configuration
-.netcore configuration
-1.project.json dependencies add following reference
-"dependencies": {
-        "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
-        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
-        "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
-        "Microsoft.NETCore.App": {
-          "version": "1.0.0-rc2-3002702",
-          "type": "platform"
-        },
-        "Pomelo.Data.MySql": "1.0.0",
-        "System.Text.Encoding.CodePages": "4.0.1"
-      }
+PetaPoco.NetCore 是基于PetaPoco的分支，主要增加对.netcore支持，也保持PetaPoco原生的功能，NetCore目前只做了mysql,sqlserver的支持，其它支持增加相应驱动进行扩展即可。<br/>
 
-2.appsettings.json add following configuration
+petapoco原项目地址:https://github.com/CollaboratingPlatypus/PetaPoco  <br/>
+PetaPoco.NetCore下载地址： https://www.nuget.org/packages/PetaPoco.NetCore/   <br/>
+nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
 
-"ProviderName": "MySql.Data.MySqlClient",
-  "ConnectionStringName": "Conn",
-  "ConnectionStrings": {
-    "Conn": "server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"
-  }
+一、.netcore配置 (netcore configuration)<br/>
+在project.json增加以下引用<br/>
+"dependencies": { <br/>
+        "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final", <br/>
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final", <br/>
+        "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final", <br/>
+        "Microsoft.NETCore.App": { <br/>
+          "version": "1.0.0-rc2-3002702", <br/>
+          "type": "platform" <br/>
+        }, <br/>
+        "Pomelo.Data.MySql": "1.0.0", <br/>
+        "System.Text.Encoding.CodePages": "4.0.1" <br/>
+      } <br/>
 
-net framework configuration
-config file add following configuration
-<connectionStrings>
-    <!--mysql-->
-    <add name="Conn" connectionString="server=localhost;database=test;uid=root;password=123456;charset=utf8;" providerName="MySql.Data.MySqlClient"/>
+2.在appsettings.json 增加ProviderName、ConnectionStringName、ConnectionStrings配置，ProviderName用于说明驱动类型，ConnectionStringName用于说明读取ConnectionStrings哪个节点<br/>
+
+"ProviderName": "MySql.Data.MySqlClient",<br/>
+  "ConnectionStringName": "Conn",<br/>
+  "ConnectionStrings": {<br/>
+    "Conn": "server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"<br/>
+  }<br/>
+
+二、net framework配置 (net framework configuration)<br/>
+在config 增加connectionStrings即可<br/>
+<connectionStrings><br/>
+    <add name="Conn" connectionString="server=localhost;database=test;uid=root;password=123456;charset=utf8;"<br/> providerName="MySql.Data.MySqlClient"/><br/>
     
-    <!--sqlserver-->
-    <!--<add name="Conn" connectionString="server=localhost;database=test;uid=sa;pwd=123456;Connect Timeout=180;Connection Lifetime=2000;packet size=4096" providerName="System.Data.SqlClient" />-->
-  </connectionStrings>
+    <!--sqlserver--><br/>
+    <!--<add name="Conn" connectionString="server=localhost;database=test;uid=sa;pwd=123456;Connect Timeout=180;Connection Lifetime=2000;packet size=4096" providerName="System.Data.SqlClient" />--><br/>
+  </connectionStrings><br/>
   
-  3.use 
-  var db = new Database("Conn");
-                //实体测试
-                Blog blog = new Blog() { BlogId = 3, Url = "test3" };
-                var result = db.Insert(blog);
-                blog.Url = "test333";
-                result = db.Update(blog);
-                result = db.Delete(blog);
+三、使用 (use on project)<br/>
+测试sql<br/>
+CREATE TABLE blogs (<br/>
+  BlogId int(11) NOT NULL PRIMARY KEY,<br/>
+  Url varchar(1000) DEFAULT NULL<br/>
+)<br/>
 
-                //sql测试
-                var sql1 = Sql.Builder.Append("insert into blogs values(4,'test4')");
-                result = db.Execute(sql1);
-                var sql2 = Sql.Builder.Append("update blogs set Url='test444' where BlogId=4");
-                result = db.Execute(sql2);
+  var db = new Database("Conn");<br/>
+                //实体测试<br/>
+                Blog blog = new Blog() { BlogId = 3, Url = "test3" };<br/>
+                var result = db.Insert(blog);<br/>
+                blog.Url = "test333";<br/>
+                result = db.Update(blog);<br/>
+                result = db.Delete(blog);<br/>
 
-                var model2 = db.SingleOrDefault<Blog>(1);
-                var list = db.Query<Blog>(Sql.Builder.Append("select * from blogs")).ToList();
-                var list2 = db.Page<Blog>(1, 2, Sql.Builder.Append("select * from blogs"));
-                var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");
-                var model1 = db.Query<Blog>(sql3).FirstOrDefault();
-                var model3 = db.FirstOrDefault<Blog>(sql3);
+                //sql测试<br/>
+                var sql1 = Sql.Builder.Append("insert into blogs values(4,'test4')");<br/>
+                result = db.Execute(sql1);<br/>
+                var sql2 = Sql.Builder.Append("update blogs set Url='test444' where BlogId=4");<br/>
+                result = db.Execute(sql2);<br/>
 
-Save an entity
+                var model2 = db.SingleOrDefault<Blog>(1);<br/>
+                var list = db.Query<Blog>(Sql.Builder.Append("select * from blogs")).ToList();<br/>
+                var list2 = db.Page<Blog>(1, 2, Sql.Builder.Append("select * from blogs"));<br/>
+                var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");<br/>
+                var model1 = db.Query<Blog>(sql3).FirstOrDefault();<br/>
+                var model3 = db.FirstOrDefault<Blog>(sql3);<br/>
 
-    db.Save(article);
-    db.Save(new Article { Title = "Super easy to use PetaPoco" });
-    db.Save("Articles", "Id", { Title = "Super easy to use PetaPoco", Id = Guid.New() });
-Get an entity
+保存实体 <br/>
 
-    var article = db.Single<Article>(123);
-    var article = db.Single<Article>("WHERE ArticleKey = @0", "ART-123");
-Delete an entity
+    db.Save(blog);
+    db.Save(new Blog {BlogId = 5,  Url = "Super easy to use PetaPoco" });<br/>
+获取实体 <br/>
 
-    db.Delete(article);
-    db.Delete<Article>(123);
-    db.Delete("Articles", "Id", 123);
-    db.Delete("Articles", "ArticleKey", "ART-123");
-Plus much much more.
-https://github.com/CollaboratingPlatypus/PetaPoco/wiki
-  
-For configuration, code examples and other general information See the petapoco docshttps://github.com/CollaboratingPlatypus/PetaPoco/wiki
+    var article = db.Single<Blog>(1);<br/>
+    var article = db.Single<Blog>("WHERE BlogId = @0", 1);<br/>
+    
+删除实体 <br/>
+    db.Delete(Blog);<br/>
+    db.Delete<Blog>(1);<br/>
+    db.Delete("Blog", "BlogId", 1);<br/>
+    
+更多api请参考petapoco文档 <br/>
+https://github.com/CollaboratingPlatypus/PetaPoco/wiki<br/>
+
+by hoping chinahuxp@qq.com<br/>
