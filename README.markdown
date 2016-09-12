@@ -31,7 +31,7 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
 二、net framework配置 (net framework configuration)<br/>
 在config 增加connectionStrings即可<br/>
 <connectionStrings><br/>
-    <add name="Conn" connectionString="server=localhost;database=test;uid=root;password=123456;charset=utf8;"<br/> providerName="MySql.Data.MySqlClient"/><br/>
+\<add name="Conn" connectionString="server=localhost;database=test;uid=root;password=123456;charset=utf8;"providerName="MySql.Data.MySqlClient"/><br/>
     
     <!--sqlserver--><br/>
     <!--<add name="Conn" connectionString="server=localhost;database=test;uid=sa;pwd=123456;Connect Timeout=180;Connection Lifetime=2000;packet size=4096" providerName="System.Data.SqlClient" />--><br/>
