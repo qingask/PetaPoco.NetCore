@@ -1,6 +1,6 @@
 # PetaPoco.NetCore
 
-PetaPoco.NetCore 是基于PetaPoco的分支，主要增加对.netcore支持，也保持PetaPoco原生的功能，NetCore目前只做了mysql,sqlserver的支持，其它数据库因为我项目没使用，也没oracle这些环境来测试，有需要的可以增加相应驱动进行扩展即可。<br/>
+PetaPoco.NetCore 是基于PetaPoco的分支，主要增加对.netcore支持，也保持PetaPoco原生的功能，NetCore目前只做了mysql,sqlserver的支持，其它数据库因为我项目没使用，也没这些环境来测试就没加了，有需要的可以增加相应驱动进行扩展即可。<br/>
 
 petapoco原项目地址:https://github.com/CollaboratingPlatypus/PetaPoco  <br/>
 PetaPoco.NetCore下载地址： https://www.nuget.org/packages/PetaPoco.NetCore/   <br/>
