@@ -47,9 +47,12 @@ CREATE TABLE blogs (<br/>
   var db = new Database("Conn");<br/>
                 //实体测试<br/>
                 Blog blog = new Blog() { BlogId = 3, Url = "test3" };<br/>
+                //保存<br/>
                 var result = db.Insert(blog);<br/>
+                  //编辑<br/>
                 blog.Url = "test333";<br/>
                 result = db.Update(blog);<br/>
+                   //删除<br/>
                 result = db.Delete(blog);<br/>
 
                 //sql测试<br/>
@@ -65,19 +68,7 @@ CREATE TABLE blogs (<br/>
                 var model1 = db.Query<Blog>(sql3).FirstOrDefault();<br/>
                 var model3 = db.FirstOrDefault<Blog>(sql3);<br/>
 
-保存实体 <br/>
 
-    db.Save(blog);
-    db.Save(new Blog {BlogId = 5,  Url = "Super easy to use PetaPoco" });<br/>
-获取实体 <br/>
-
-    var article = db.Single<Blog>(1);<br/>
-    var article = db.Single<Blog>("WHERE BlogId = @0", 1);<br/>
-    
-删除实体 <br/>
-    db.Delete(Blog);<br/>
-    db.Delete<Blog>(1);<br/>
-    db.Delete("Blog", "BlogId", 1);<br/>
     
 更多api请参考petapoco文档 <br/>
 https://github.com/CollaboratingPlatypus/PetaPoco/wiki<br/>
