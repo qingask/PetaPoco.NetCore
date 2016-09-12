@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PetaPoco.NetCore</name>
+    </assembly>
+    <members>
+        <member name="M:PetaPoco.NetCore.SqlConnectionFactory.CreateSqlConnection(System.String,System.String)">
+            <summary>
+            SqlConnectionFactory.cs 创建DB连接的
+            </summary>
+        </member>
+    </members>
+</doc>

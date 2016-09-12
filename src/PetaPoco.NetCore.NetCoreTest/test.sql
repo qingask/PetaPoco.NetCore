@@ -1,0 +1,4 @@
+﻿CREATE TABLE blogs (
+  BlogId int(11) NOT NULL PRIMARY KEY,
+  Url varchar(1000) DEFAULT NULL
+)

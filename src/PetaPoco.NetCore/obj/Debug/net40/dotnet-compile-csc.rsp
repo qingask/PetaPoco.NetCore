@@ -1,0 +1,24 @@
+﻿-d:DEBUG
+-d:TRACE
+-d:NET40
+-nowarn:CS1701
+-nowarn:CS1702
+-nowarn:CS1705
+-doc:"D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\bin\Debug\net40\PetaPoco.NetCore.xml"
+-t:library
+-debug:full
+-nostdlib
+-nologo
+"D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\obj\Debug\net40\dotnet-compile.assemblyinfo.cs"
+-out:"D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\bin\Debug\net40\PetaPoco.NetCore.dll"
+-r:"C:\Users\hopinghu.ALOG\.nuget\packages\MySql.Data\6.9.8\lib\net40\MySql.Data.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Configuration.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll"
+"D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\PetaPoco.NetCore.cs"
+"D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\Properties\AssemblyInfo.cs"

@@ -1,0 +1,31 @@
+--temp-output:D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\obj\Debug\net45\
+--out:D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\bin\Debug\net45\PetaPoco.NetCore.dll
+--define:DEBUG
+--define:TRACE
+--define:ASYNC
+--define:NET45
+--suppress-warning:CS1701
+--suppress-warning:CS1702
+--suppress-warning:CS1705
+--warnings-as-errors:False
+--optimize:False
+--generate-xml-documentation:True
+--output-name:PetaPoco.NetCore
+--title:PetaPoco NetCore or  dotnet
+--description:A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc 
+--copyright:2016 hoping, Inc.
+--file-version:1.0.0.0
+--version:1.0.0.0
+--informational-version:1.0.0
+--target-framework:.NETFramework,Version=v4.5
+--reference:C:\Users\hopinghu.ALOG\.nuget\packages\MySql.Data\6.9.8\lib\net45\MySql.Data.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll
+D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\PetaPoco.NetCore.cs
+D:\hoping\Project\PetaPoco.NetCore\src\PetaPoco.NetCore\Properties\AssemblyInfo.cs
