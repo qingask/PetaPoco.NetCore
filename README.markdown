@@ -37,16 +37,16 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
 三、使用 (use on project)<br/>
 
                 
-                 MySqlConnection connection = new MySqlConnection(""server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"");<br/>
-                var db = new Database(connection);<br/>
+                 MySqlConnection connection = new MySqlConnection(""server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"");
+                var db = new Database(connection);
                 //实体测试
                 Blog blog = new Blog() { BlogId = 3, Url = "test3" };
-                //保存<br/>
+                //保存
                 var result = db.Insert(blog);
                   //编辑
                 blog.Url = "test333";
                 result = db.Update(blog);
-                   //删除<br/>
+                   //删除
                 result = db.Delete(blog);
                 
                 //sql测试
@@ -66,7 +66,7 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
                 var model1 = db.Query<Blog>(sql3).FirstOrDefault();
                 var model3 = db.FirstOrDefault<Blog>(sql3);
                 
-                //返回多个结果测试<br/>
+                //返回多个结果测试
                 result = db.Fetch<post, author, post>(
                 (p, a) =>
                 {
@@ -78,7 +78,7 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
                 using (var multi = db.QueryMultiple("select * from post"))
                 {
                     result = multi.Read<post>().ToList();
-                }<br/>
+                }
                 using (var multi = db.QueryMultiple(@"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY post.id"))
                 {
                     result = multi.Read<post, author, post>((p, a) => { p.author_obj = a; return p; }).ToList();
