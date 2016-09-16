@@ -30,62 +30,64 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
 <connectionStrings><br/>
 \<add name="Conn" connectionString="server=localhost;database=test;uid=root;password=123456;charset=utf8;"providerName="MySql.Data.MySqlClient"/><br/>
     
-    <!--sqlserver--><br/>
-    <!--<add name="Conn" connectionString="server=localhost;database=test;uid=sa;pwd=123456;Connect Timeout=180;Connection Lifetime=2000;packet size=4096" providerName="System.Data.SqlClient" />--><br/>
+    <!--sqlserver-->
+    <!--<add name="Conn" connectionString="server=localhost;database=test;uid=sa;pwd=123456;Connect Timeout=180;Connection Lifetime=2000;packet size=4096" providerName="System.Data.SqlClient" />-->
   </connectionStrings><br/>
   
 三、使用 (use on project)<br/>
-                MySqlConnection connection = new MySqlConnection(""server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"");<br/>
-                var db = new Database(connection);<br/>
-                //实体测试<br/>
-                Blog blog = new Blog() { BlogId = 3, Url = "test3" };<br/>
-                //保存<br/>
-                var result = db.Insert(blog);<br/>
-                  //编辑<br/>
-                blog.Url = "test333";<br/>
-                result = db.Update(blog);<br/>
-                   //删除<br/>
-                result = db.Delete(blog);<br/>
 
-                //sql测试<br/>
-                var sql1 = Sql.Builder.Append("insert into blogs values(4,'test4')");<br/>
-                result = db.Execute(sql1);<br/>
-                var sql2 = Sql.Builder.Append("update blogs set Url='test444' where BlogId=4");<br/>
-                result = db.Execute(sql2);<br/>
                 
-                //查询<br/>
-                var model2 = db.SingleOrDefault<Blog>(1);<br/>
-                  //列表<br/>
-                var list = db.Query<Blog>(Sql.Builder.Append("select * from blogs")).ToList();<br/>
-                  //分页<br/>
-                var list2 = db.Page<Blog>(1, 2, Sql.Builder.Append("select * from blogs"));<br/>
-                  //查询<br/>
-                var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");<br/>
-                var model1 = db.Query<Blog>(sql3).FirstOrDefault();<br/>
-                var model3 = db.FirstOrDefault<Blog>(sql3);<br/>
+                 MySqlConnection connection = new MySqlConnection(""server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"");<br/>
+                var db = new Database(connection);<br/>
+                //实体测试
+                Blog blog = new Blog() { BlogId = 3, Url = "test3" };
+                //保存<br/>
+                var result = db.Insert(blog);
+                  //编辑
+                blog.Url = "test333";
+                result = db.Update(blog);
+                   //删除<br/>
+                result = db.Delete(blog);
+                
+                //sql测试
+                var sql1 = Sql.Builder.Append("insert into blogs values(4,'test4')");
+                result = db.Execute(sql1);
+                var sql2 = Sql.Builder.Append("update blogs set Url='test444' where BlogId=4");
+                result = db.Execute(sql2);
+                
+                //查询
+                var model2 = db.SingleOrDefault<Blog>(1);
+                  //列表
+                var list = db.Query<Blog>(Sql.Builder.Append("select * from blogs")).ToList();
+                  //分页
+                var list2 = db.Page<Blog>(1, 2, Sql.Builder.Append("select * from blogs"));
+                  //查询
+                var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");
+                var model1 = db.Query<Blog>(sql3).FirstOrDefault();
+                var model3 = db.FirstOrDefault<Blog>(sql3);
                 
                 //返回多个结果测试<br/>
-                result = db.Fetch<post, author, post>(<br/>
-                (p, a) =><br/>
-                {<br/>
-                    p.author_obj = a;<br/>
-                    return p;<br/>
-                },<br/>
-                @"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY post.id");<br/>
+                result = db.Fetch<post, author, post>(
+                (p, a) =>
+                {
+                    p.author_obj = a;
+                    return p;
+                },
+                @"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY post.id");
                 
-                using (var multi = db.QueryMultiple("select * from post"))<br/>
-                {<br/>
-                    result = multi.Read<post>().ToList();<br/>
+                using (var multi = db.QueryMultiple("select * from post"))
+                {
+                    result = multi.Read<post>().ToList();
                 }<br/>
-                using (var multi = db.QueryMultiple(@"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY<br/> post.id"))<br/>
-                {<br/>
-                    result = multi.Read<post, author, post>((p, a) => { p.author_obj = a; return p; }).ToList();<br/>
-                }<br/>
-                using (var multi = db.QueryMultiple("select * from post;select * from author;"))<br/>
-                {<br/>
-                    var p = multi.Read<post>().First();<br/>
-                    var a = multi.Read<author>().First();<br/>
-                }<br/>
+                using (var multi = db.QueryMultiple(@"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY post.id"))
+                {
+                    result = multi.Read<post, author, post>((p, a) => { p.author_obj = a; return p; }).ToList();
+                }
+                using (var multi = db.QueryMultiple("select * from post;select * from author;"))
+                {
+                    var p = multi.Read<post>().First();
+                    var a = multi.Read<author>().First();
+                }
 
 测试sql<br/>
 CREATE TABLE blogs (<br/>
