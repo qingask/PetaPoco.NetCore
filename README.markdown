@@ -1,13 +1,13 @@
 # PetaPoco.NetCore
 
-PetaPoco.NetCore 是基于PetaPoco的分支，主要增加对.netcore支持，也保持PetaPoco原生的功能，NetCore目前只做了mysql,sqlserver的支持，其它数据库因为我项目没使用，也没这些环境来测试就没加了，有需要的可以增加相应驱动进行扩展即可。<br/>
+PetaPoco.NetCore 是基于PetaPoco的分支，主要增加对.netcore支持，也保留着PetaPoco原生的功能，支持单个实体对象映射，也支持多实体对象映射，NetCore未需指定驱动连接，其它API一致。<br/>
 
 petapoco原项目地址:https://github.com/CollaboratingPlatypus/PetaPoco  <br/>
-PetaPoco.NetCore下载地址： https://www.nuget.org/packages/PetaPoco.NetCore/   <br/>
+PetaPoco.NetCore Nuget包下载地址： https://www.nuget.org/packages/PetaPoco.NetCore/   <br/>
 nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
 
 一、.netcore配置 (netcore configuration)<br/>
-在project.json增加以下引用，这里.netcore下mysql的驱动使用Pomelo.Data.MySql，mysql官方的netcore版本驱动兼容性太差，坑太多，等完善后可替换为官方的myssql core驱动<br/>
+在project.json增加相应.netcore版本的数据库驱动引用，以mysql为例，这里mysql的驱动使用Pomelo.Data.MySql，mysql官方的netcore版本驱动兼容性太差，坑太多，等完善后可替换为官方的myssql core驱动<br/>
 "dependencies": { <br/>
         "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final", <br/>
         "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final", <br/>
@@ -20,10 +20,7 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
         "System.Text.Encoding.CodePages": "4.0.1" <br/>
       } <br/>
 
-2.在appsettings.json 增加ProviderName、ConnectionStringName、ConnectionStrings配置，ProviderName用于说明驱动类型，ConnectionStringName用于说明读取ConnectionStrings哪个节点<br/>
-
-"ProviderName": "MySql.Data.MySqlClient",<br/>
-  "ConnectionStringName": "Conn",<br/>
+2.数据库连接信息可直接写在程序里，也可配置appsettings.json（建议配置）<br/>
   "ConnectionStrings": {<br/>
     "Conn": "server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"<br/>
   }<br/>
@@ -38,13 +35,8 @@ nuget安装 PM>Install-Package PetaPoco.NetCore <br/>
   </connectionStrings><br/>
   
 三、使用 (use on project)<br/>
-测试sql<br/>
-CREATE TABLE blogs (<br/>
-  BlogId int(11) NOT NULL PRIMARY KEY,<br/>
-  Url varchar(1000) DEFAULT NULL<br/>
-)<br/>
-
-  var db = new Database("Conn");<br/>
+                MySqlConnection connection = new MySqlConnection(""server=localhost;database=test;uid=root;password=123456;charset=utf8;SslMode=None"");<br/>
+                var db = new Database(connection);<br/>
                 //实体测试<br/>
                 Blog blog = new Blog() { BlogId = 3, Url = "test3" };<br/>
                 //保存<br/>
@@ -71,9 +63,58 @@ CREATE TABLE blogs (<br/>
                 var sql3 = Sql.Builder.Append("select * from blogs where BlogId=4");<br/>
                 var model1 = db.Query<Blog>(sql3).FirstOrDefault();<br/>
                 var model3 = db.FirstOrDefault<Blog>(sql3);<br/>
+                
+                //返回多个结果测试<br/>
+                result = db.Fetch<post, author, post>(<br/>
+                (p, a) =><br/>
+                {<br/>
+                    p.author_obj = a;<br/>
+                    return p;<br/>
+                },<br/>
+                @"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY post.id");<br/>
+                
+                using (var multi = db.QueryMultiple("select * from post"))<br/>
+                {<br/>
+                    result = multi.Read<post>().ToList();<br/>
+                }<br/>
+                using (var multi = db.QueryMultiple(@"SELECT * FROM post LEFT JOIN author ON post.author = author.id ORDER BY<br/> post.id"))<br/>
+                {<br/>
+                    result = multi.Read<post, author, post>((p, a) => { p.author_obj = a; return p; }).ToList();<br/>
+                }<br/>
+                using (var multi = db.QueryMultiple("select * from post;select * from author;"))<br/>
+                {<br/>
+                    var p = multi.Read<post>().First();<br/>
+                    var a = multi.Read<author>().First();<br/>
+                }<br/>
 
+测试sql<br/>
+CREATE TABLE blogs (<br/>
+  BlogId int(11) NOT NULL PRIMARY KEY,<br/>
+  Url varchar(1000) DEFAULT NULL<br/>
+);<br/>
 
-    
+create table post(<br/>
+id int,<br/>
+title varchar(32),<br/>
+author int<br/>
+);<br/>
+
+drop table author;<br/>
+create table author(<br/>
+id int,<br/>
+name varchar(32)<br/>
+);<br/>
+INSERT into blogs values(1,'test1');
+INSERT into blogs values(2,'test2');
+
+INSERT into author value(1,'作者1');
+INSERT into author value(2,'作者2');
+
+INSERT into post values(1,'book1',1);
+INSERT into post values(2,'book2',1);
+INSERT into post values(3,'book3',2);
+INSERT into post values(4,'book4',2);
+
 更多api请参考petapoco文档 <br/>
 https://github.com/CollaboratingPlatypus/PetaPoco/wiki<br/>
 
