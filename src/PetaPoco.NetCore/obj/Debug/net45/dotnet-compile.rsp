@@ -11,8 +11,8 @@
 --optimize:False
 --generate-xml-documentation:True
 --output-name:PetaPoco.NetCore
---title:PetaPoco NetCore or  dotnet
---description:A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc 
+--title:PetaPoco.NetCore
+--description:PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,support .netframework and .netcore,petapoco is A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc,support a query and map,and support Multi Mapping, Multiple Results
 --copyright:2016 hoping, Inc.
 --file-version:1.0.0.0
 --version:1.0.0.0
