@@ -13,9 +13,9 @@
 --title:PetaPoco.NetCore
 --description:PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,support .netframework and .netcore,petapoco is A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc,support a query and map,and support Multi Mapping, Multiple Results
 --copyright:2016 hoping, Inc.
---file-version:1.0.0.0
---version:1.0.0.0
---informational-version:1.0.0
+--file-version:1.0.1.0
+--version:1.0.1.0
+--informational-version:1.0.1
 --target-framework:.NETFramework,Version=v4.0
 --reference:C:\Users\hopinghu.ALOG\.nuget\packages\MySql.Data\6.9.8\lib\net40\MySql.Data.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll

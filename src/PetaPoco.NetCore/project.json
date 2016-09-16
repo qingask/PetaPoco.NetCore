@@ -11,7 +11,7 @@
       "url": "https://github.com/qingask/PetaPoco.NetCore"
     }
   },
-  "version": "1.0.0-*",
+  "version": "1.0.1",
   "authors": [ "hoping" ],
   "description": "PetaPoco.NetCore is a fork of PetaPoco based, add .netcore support,support .netframework and .netcore,petapoco is A high performance Micro-ORM on dotnet supporting SQL Server, MySQL, Sqlite, SqlCE, Firebird etc,support a query and map,and support Multi Mapping, Multiple Results",
   "title": "PetaPoco.NetCore",
