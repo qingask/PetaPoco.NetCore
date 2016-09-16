@@ -1,0 +1,10 @@
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.NetFrameworkTest.exe.config
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\obj\Debug\PetaPoco.NetCore.NetFrameworkTest.csprojResolveAssemblyReference.cache
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.NetFrameworkTest.exe
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.NetFrameworkTest.pdb
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\MySql.Data.dll
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.dll
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.pdb
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\bin\Debug\PetaPoco.NetCore.xml
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\obj\Debug\PetaPoco.NetCore.NetFrameworkTest.exe
+D:\hoping\Project\PetaPoco.NetCore\PetaPoco.NetCore.NetFrameworkTest\obj\Debug\PetaPoco.NetCore.NetFrameworkTest.pdb
